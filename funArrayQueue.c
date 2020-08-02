@@ -14,7 +14,8 @@ int enqueue(struct Queue *quptr, int x)
 {
 
     //if one ahead of rear is front ptr (if rear at last element check if front at element 0)
-    if ((quptr->rear + 1) % quptr->size == quptr->front){
+    if ((quptr->rear + 1) % quptr->size == quptr->front)
+    {
         printf("Queue is Full.\n");
         return -1;
     }
@@ -75,7 +76,8 @@ int promptint()
     while (ret != 1 || input > INT_MAX || input < INT_MIN)
     {
         printf("Enter a valid integer: ");
-        while ((fixin = getchar()) != EOF && fixin != '\n'); // fix stdin
+        while ((fixin = getchar()) != EOF && fixin != '\n')
+            ; // fix stdin
         fflush(stdin);
         ret = scanf("%d", &input);
     }
@@ -88,7 +90,8 @@ int repromptsize()
     while (ret != 1 || input < 1 || input > INT_MAX)
     {
         printf("Enter a valid size: ");
-        while ((fixin = getchar()) != EOF && fixin != '\n'); // fix stdin
+        while ((fixin = getchar()) != EOF && fixin != '\n')
+            ; // fix stdin
         fflush(stdin);
         ret = scanf("%d", &input);
     }
@@ -101,7 +104,8 @@ int repromptchoice()
     while (ret != 1 || input > 1 || input < 3)
     {
         printf("Enter a valid choice: ");
-        while ((fixin = getchar()) != EOF && fixin != '\n'); // fix stdin
+        while ((fixin = getchar()) != EOF && fixin != '\n')
+            ; // fix stdin
         fflush(stdin);
         ret = scanf("%d", &input);
     }
@@ -113,7 +117,6 @@ int main()
 
     //create queue arr size 5
     struct Queue qu;
-
 
     printf("Welcome to the Array Queue Program.\n");
     printf("Create a Queue using an Array.\n");
@@ -128,7 +131,8 @@ int main()
     create(&qu, size);
 
     int input, flag = 1;
-    do{
+    do
+    {
         printf("\nWhat do you want to do with the Queue?\n");
         printf("1. Queue an integer.\n");
         printf("2. Dequeue an integer.\n");
@@ -139,34 +143,38 @@ int main()
         ret = scanf("%d", &input);
         if (ret != 1 || input > 3 || input < 1)
             input = repromptchoice();
-        
+
         //set the infix string
-        int k,r;
+        int k, r;
         switch (input)
         {
-            case 1:
-                k = promptint();
-                r = enqueue(&qu,k);
-                if(r != -1) 
-                    printf("Queued %d element.\n",k);
-                printf("Press Any Key to Continue");
-                getchar();getchar();fflush(stdin);
-                break;
-            case 2:
-                r = dequeue(&qu);
-                if(r != -1)
-                    printf("Dequed %d element.\n",r);
-                printf("Press Any Key to Continue");
-                getchar();getchar();fflush(stdin);
-                break;
-            case 3:
-                display(qu);
-                printf("Press Any Key to Continue");
-                getchar();getchar();fflush(stdin);
-                break;
+        case 1:
+            k = promptint();
+            r = enqueue(&qu, k);
+            if (r != -1)
+                printf("Queued %d element.\n", k);
+            printf("Press Any Key to Continue");
+            getchar();
+            getchar();
+            fflush(stdin);
+            break;
+        case 2:
+            r = dequeue(&qu);
+            if (r != -1)
+                printf("Dequed %d element.\n", r);
+            printf("Press Any Key to Continue");
+            getchar();
+            getchar();
+            fflush(stdin);
+            break;
+        case 3:
+            display(qu);
+            printf("Press Any Key to Continue");
+            getchar();
+            getchar();
+            fflush(stdin);
+            break;
         }
 
-
-    }while(flag);
-
+    } while (flag);
 }
